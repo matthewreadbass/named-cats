@@ -1,20 +1,36 @@
-require 'sinatra'
+require "sinatra"
 require "sinatra/reloader" if development?
 
-get '/' do
-  'Hello!'
+# set :port, 1234
+# set :bind, "0.0.0.0"
+
+get "/" do
+  "hello!"
 end
 
-get '/secret' do
-  'super-secret spy stuff'
+get "/secret" do
+  "We are serious developers"
 end
 
-get '/random-cat' do
-  @name = ["Amigo", "Misty", "Almond"].sample
+get "/harry-potter" do
+  "You're a wizard Harry"
+end
+
+get "/the-plague" do
+  "Under the vast indifference of the sky"
+end
+
+get "/random-cat" do
+  @cat_names = ["Amigo", "Misty", "Almond", "Matthew", "Xia"].sample
   erb(:index)
 end
 
-get '/named-cat' do
-  @name = params[:name]
+post "/named-cat" do
+  p params
+  @cat_names = params[:name]
   erb(:index)
+end
+
+get "/cat-form" do
+  erb :cat_form
 end
